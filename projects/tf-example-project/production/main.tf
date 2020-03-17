@@ -22,8 +22,8 @@ resource launchdarkly_segment "example" {
 
 # create rules
 resource launchdarkly_feature_flag_environment "simple" {
-  flag_id = flags.simple.id
-  env = local.env
+  flag_id = local.flags.simple.id
+  env_key = local.env
 
   targeting_enabled = true
 
@@ -31,8 +31,6 @@ resource launchdarkly_feature_flag_environment "simple" {
     variation = local.flags.simple.var.by_value.true
   }
 
-  off_variation {
-    variation = local.flags.simple.var.by_value.false
-  }
+  off_variation =  local.flags.simple.var.by_value.false
 
 }

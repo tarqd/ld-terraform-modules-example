@@ -42,6 +42,17 @@ module "development_rules" {
   env_key = module.project.environments.development.key
 }
 
+module "production_rules" {
+  source = "./production"
+  # you can combine module-created flags with resource-created flags with merge
+  # only required if you don't always use the module
+  # other you can do:
+  # flags = module.<instance of flag module >.flags
+  flags = module.flags.flags
+  project_key = module.project.key
+  env_key = module.project.environments.production.key
+}
+
 
 
 
